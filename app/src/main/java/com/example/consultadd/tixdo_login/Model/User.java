@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by consultadd on 2/8/16.
  */
-public class User implements Serializable{
+public class User implements Serializable {
     /**
      * id : 409
      * referral_code : REFSQkZGa
@@ -57,7 +57,6 @@ public class User implements Serializable{
     private Object referred_by;
     private List<?> groups;
     private List<?> user_permissions;
-
 
 
     public String getId() {

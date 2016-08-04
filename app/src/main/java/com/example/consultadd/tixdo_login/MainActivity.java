@@ -7,7 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.consultadd.tixdo_login.Model.Error;
 import com.example.consultadd.tixdo_login.Model.User;
 import com.example.consultadd.tixdo_login.utilities.VolleyHandler;
 import com.example.consultadd.tixdo_login.utilities.VolleyListener;
@@ -22,9 +24,6 @@ public class MainActivity extends AppCompatActivity implements VolleyListener {
     private TextView mid;
     private Button mlogout;
     private TextView p;
-    //User user=new User();
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,15 +37,14 @@ public class MainActivity extends AppCompatActivity implements VolleyListener {
         mid = (TextView) findViewById(R.id.txt_id);
         memail = (TextView) findViewById(R.id.txt_email);
         mlogout = (Button) findViewById(R.id.btn_logout);
-        //p=(TextView)findViewById(R.id.txt_password);
 
 
         mlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                VolleyHandler volleyhandler=new VolleyHandler(MainActivity.this);
-                volleyhandler.login(musername.getText().toString(),mpassword.getText().toString());
+                VolleyHandler volleyhandler = new VolleyHandler(MainActivity.this);
+                volleyhandler.login(musername.getText().toString(), mpassword.getText().toString());
 
             }
 
@@ -58,11 +56,15 @@ public class MainActivity extends AppCompatActivity implements VolleyListener {
     @Override
     public void response(int code, Object response) {
         switch (code) {
-            case VolleyHandler.GET_USER:
+            case 1:
                 User user = (User) response;
-                Intent intent=new Intent(MainActivity.this,UserprofileActivity.class);
-                intent.putExtra("user",user);
+                Intent intent = new Intent(MainActivity.this, UserprofileActivity.class);
+                intent.putExtra("user", user);
                 startActivity(intent);
+                break;
+            case 2:
+                Error error = (Error) response;
+                Toast.makeText(MainActivity.this,error.getError_desc(),Toast.LENGTH_SHORT).show();
                 break;
         }
     }

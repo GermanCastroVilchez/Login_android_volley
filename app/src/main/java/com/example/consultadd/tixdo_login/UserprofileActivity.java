@@ -36,7 +36,7 @@ public class UserprofileActivity extends AppCompatActivity {
         mlogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(UserprofileActivity.this,MainActivity.class);
+                Intent intent = new Intent(UserprofileActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
